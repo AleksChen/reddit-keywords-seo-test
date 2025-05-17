@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "ugkx96bSvlErfvnqOlCcQNoMw98zDi8dULWLcjnf7l8",
+  },
 };
 
 export const homeMetadata: Metadata = metadata;
