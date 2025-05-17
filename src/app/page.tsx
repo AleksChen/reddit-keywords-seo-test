@@ -1,103 +1,82 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from 'framer-motion';
+import AnimatedBackground from './components/AnimatedBackground';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TitleCard from './components/TitleCard';
+
+const titles = [
+  {
+    title: 'I want to eat your pancreas',
+    description: 'This is a deeply moving Japanese novel and film about the friendship between a girl with a pancreatic disease and an introverted boy. Despite the strange-sounding title, it\'s actually a beautiful story about life, friendship, and accepting death.',
+    color: 'bg-gradient-to-br from-pink-600 to-purple-700',
+    slug: 'eat-your-pancreas'
+  },
+  {
+    title: 'I want to escape from princess lessons',
+    description: 'This is a light novel and anime about an ordinary girl who is suddenly told she\'s a princess and is forced to take princess lessons. She tries to escape these lessons but learns important lessons about self-worth and responsibility in the process.',
+    color: 'bg-gradient-to-br from-blue-600 to-purple-700',
+    slug: 'escape-princess-lessons'
+  },
+  {
+    title: 'I want to hug that gator',
+    description: 'This is a fun story about a brave (or reckless) person who wants to hug an alligator. The story explores the relationship between humans and wildlife, and how we should respect dangerous creatures in nature.',
+    color: 'bg-gradient-to-br from-green-600 to-blue-700',
+    slug: 'hug-that-gator'
+  }
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <AnimatedBackground />
+      <Header />
+      
+      <main className="flex flex-col min-h-screen pt-28 pb-16 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto w-full">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500">
+              I Want To...
+            </h1>
+            <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
+              Explore the stories behind these interesting and captivating &quot;I want to...&quot; titles
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {titles.map((title, index) => (
+              <TitleCard 
+                key={title.slug}
+                title={title.title}
+                description={title.description}
+                color={title.color}
+                slug={title.slug}
+                index={index}
+              />
+            ))}
+          </div>
+          
+          <motion.div 
+            className="mt-20 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
-            Read our docs
-          </a>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">Why are these titles so unique?</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">
+              These titles stand out because they break conventions and spark curiosity. They typically use the common phrase &quot;I want to...&quot; in unexpected ways, creating memorable titles.
+            </p>
+          </motion.div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      
+      <Footer />
+    </>
   );
 }
