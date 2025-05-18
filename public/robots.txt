@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://reddit-keywords-seo-test.vercel.app
+
+# Sitemaps
+Sitemap: https://reddit-keywords-seo-test.vercel.app/sitemap.xml
+Sitemap: https://reddit-keywords-seo-test.vercel.app/server-sitemap.xml
